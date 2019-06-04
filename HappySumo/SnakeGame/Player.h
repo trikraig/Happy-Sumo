@@ -1,7 +1,14 @@
 #pragma once
 #include "GameObject.h"
+
 class Player : public GameObject
 {
+private:
+
+	int movementSpeed{ 5 };
+	int movementStep{ 0 };
+	sf::Texture textures [4];
+	sf::Sprite currentSprite;
 
 public:
 

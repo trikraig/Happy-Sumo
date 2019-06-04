@@ -13,10 +13,11 @@ protected:
 	
 	enum class EDirection
 	{
-		eNorth, eEast, eSouth, eWest
+		eNorth, eEast, eSouth, eWest, eIdle
 	};
 
-	EDirection currentDirection;
+	EDirection currentDirection{ EDirection::eIdle };
+
 public:
 
 	GameObject(sf::Vector2f new_position, sf::Color new_color, int new_Size);
