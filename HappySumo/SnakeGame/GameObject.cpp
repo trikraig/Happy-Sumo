@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(sf::Vector2f new_position, sf::Color new_color, int new_Size) : currentPosition (new_position), color (new_color), size (new_Size)
+GameObject::GameObject(sf::Vector2f new_position, sf::Color new_color, float new_Size) : currentPosition (new_position), color (new_color), size (new_Size)
 {
 }
 

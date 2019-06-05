@@ -1,11 +1,22 @@
 #include "Player.h"
 
-Player::Player(sf::Vector2f new_position, sf::Color new_color, int new_Size) : GameObject (new_position, new_color, new_Size)
+Player::Player(sf::Vector2f new_position, sf::Color new_color, float new_Size) : GameObject (new_position, new_color, new_Size)
 {
+
+	std::string fileName;
+
 	//If use to load more player sprites, increase tile00 to max array size
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 16; i++)
 	{
-		std::string fileName = "Sprites/tile00" + std::to_string(i) + ".png";
+		if (i < 10)
+		{
+			fileName = "Sprites/tile00" + std::to_string(i) + ".png";
+		}
+		else if (i > 9 && i < 20)
+		{
+			fileName = "Sprites/tile0" + std::to_string(i) + ".png";
+		}
+		
 		if (!textures[i].loadFromFile(fileName))
 		{
 			//Error
@@ -18,10 +29,53 @@ void Player::Update()
 {
 	//Player Control
 
-	if (movementStep >= 3)
+	//Idle - 000 South Face, 004 North Face, 008 East Face, 0012 West Face)
+
+	if (prevDirection == EDirection::eNorth && movementStep > 6)
+	{
+		movementStep = 4;
+	}
+
+	else if (prevDirection == EDirection::eEast && movementStep > 10)
+	{
+		movementStep = 8;
+	}
+
+	else if (prevDirection == EDirection::eSouth && movementStep > 2)
 	{
 		movementStep = 0;
 	}
+
+	else if (prevDirection == EDirection::eWest && movementStep > 14)
+	{
+		movementStep = 12;
+	}
+
+	/*switch (prevDirection)
+	{
+	case GameObject::EDirection::eNorth:
+		movementStep = 4;
+		break;
+	case GameObject::EDirection::eEast:
+		movementStep = 8;
+		break;
+	case GameObject::EDirection::eSouth:
+		movementStep = 0;
+		break;
+	case GameObject::EDirection::eWest:
+		movementStep = 12;
+		break;
+	case GameObject::EDirection::eIdle:
+		break;
+	default:
+		break;
+	}*/
+	
+	
+	/*if (movementStep >= 3)
+	{
+		movementStep = 0;
+	}*/
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -58,27 +112,41 @@ void Player::Update()
 
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		size += 0.5;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		size -= 0.5;
+	}
+
 
 	switch (currentDirection)
 	{
 	case GameObject::EDirection::eNorth:
 		movementStep++;
 		currentPosition.y -= (1 * movementSpeed);
+		prevDirection = currentDirection;
 		currentDirection = EDirection::eIdle;
 		break;
 	case GameObject::EDirection::eEast:
 		movementStep++;
 		currentPosition.x += (1 * movementSpeed);
+		prevDirection = currentDirection;
 		currentDirection = EDirection::eIdle;
 		break;
 	case GameObject::EDirection::eSouth:
 		movementStep++;
 		currentPosition.y += (1 * movementSpeed);
+		prevDirection = currentDirection;
 		currentDirection = EDirection::eIdle;
 		break;
 	case GameObject::EDirection::eWest:
 		movementStep++;
 		currentPosition.x -= (1 * movementSpeed);
+		prevDirection = currentDirection;
 		currentDirection = EDirection::eIdle;
 		break;
 	default:
