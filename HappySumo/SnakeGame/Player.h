@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Food.h"
 
 class Player : public GameObject
 {
@@ -9,6 +10,7 @@ private:
 	int movementStep{ 0 };
 	sf::Texture textures [16];
 	sf::Sprite currentSprite;
+	float score;
 
 public:
 
@@ -16,6 +18,7 @@ public:
 
 	void Update() override;
 	void Render(sf::RenderWindow & window) override;
+	void eatFood( std::vector <Food> &allFood);
 	
 };
 

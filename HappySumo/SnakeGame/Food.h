@@ -10,6 +10,7 @@ private:
 	bool isAlive{ true };
 
 	
+	sf::RectangleShape shape;
 
 public:
 
@@ -17,7 +18,9 @@ public:
 
 	void Update() override;
 	void Render(sf::RenderWindow & window) override;
-
+	float getScore();
 	void generateNewPosition();
+	sf::RectangleShape getShape();
+	
 };
 

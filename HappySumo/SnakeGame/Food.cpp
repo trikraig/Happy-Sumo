@@ -5,13 +5,22 @@
 Food::Food(sf::Vector2f new_position, sf::Color new_color, float new_Size, float new_score, bool is_bad) : GameObject (new_position, new_color, new_Size)
 {
 	isBad = is_bad;
-	score = new_score;
+	if (!isBad)
+	{
+		score = new_score;
+	}
+	else
+	{
+		score = - new_score;
+	}
+	
 	generateNewPosition();
 }
 
 void Food::Update()
 {
 	//Random spawn position , 1 of 4 off screen, movement then in direction of opposite screen,
+		
 	//Collision between player and food, add or minus score if isBad
 
 	switch (currentDirection)
@@ -19,21 +28,40 @@ void Food::Update()
 	case GameObject::EDirection::eNorth:
 		
 		currentPosition.y -= (1 * movementSpeed);
+		if (currentPosition.y < -10)
+		{
+			generateNewPosition();
+		}
 		
 		break;
 	case GameObject::EDirection::eEast:
 		
 		currentPosition.x += (1 * movementSpeed);
+
+		if (currentPosition.x > 810)
+		{
+			generateNewPosition();
+		}
 		
 		break;
 	case GameObject::EDirection::eSouth:
 		
 		currentPosition.y += (1 * movementSpeed);
+
+		if (currentPosition.y > 610)
+		{
+			generateNewPosition();
+		}
 		
 		break;
 	case GameObject::EDirection::eWest:
 		
 		currentPosition.x -= (1 * movementSpeed);
+		
+		if (currentPosition.x < -10)
+		{
+			generateNewPosition();
+		}
 		
 		break;
 	default:
@@ -44,16 +72,21 @@ void Food::Update()
 
 void Food::Render(sf::RenderWindow & window)
 {
-	sf::RectangleShape shape(sf::Vector2f((float)size, (float) size));
+	shape.setSize(sf::Vector2f((float)size, (float)size));
 	shape.setFillColor(color);
 	shape.setPosition(currentPosition);
 	shape.setOrigin(sf::Vector2f((float)(size / 2), (float)(size / 2)));
 	window.draw(shape);
 }
 
+float Food::getScore()
+{
+	return score;
+}
+
 void Food::generateNewPosition()
 {
-	int selection = rand() % 3 + 1;
+	int selection = rand() % 4 + 1;
 
 	//Generate off screen position. To make a ranged random position later on.
 
@@ -84,4 +117,9 @@ void Food::generateNewPosition()
 	default:
 		break;
 	}
+}
+
+sf::RectangleShape Food::getShape()
+{
+	return shape;
 }

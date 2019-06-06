@@ -29,6 +29,8 @@ void Player::Update()
 {
 	//Player Control
 
+	
+
 	//Idle - 000 South Face, 004 North Face, 008 East Face, 0012 West Face)
 
 	if (prevDirection == EDirection::eNorth && movementStep > 6)
@@ -166,6 +168,21 @@ void Player::Render(sf::RenderWindow & window)
 	shape.setPosition(currentPosition);
 	shape.setOrigin(sf::Vector2f((float)(size / 2), (float)(size / 2)));
 	window.draw(shape);*/
+}
+
+void Player::eatFood( std::vector <Food> &allFood)
+{
+	for ( Food &food : allFood)
+	{
+		
+		if (currentSprite.getGlobalBounds().intersects(food.getShape().getGlobalBounds()))
+		{
+			//Change Player Size
+			size += 0.1;
+			//Respawn Food
+			food.generateNewPosition();
+		}
+	}
 }
 
 
