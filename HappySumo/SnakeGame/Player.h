@@ -5,7 +5,7 @@ class Player : public GameObject
 {
 private:
 
-	int movementSpeed{ 5 };
+	
 	int movementStep{ 0 };
 	sf::Texture textures [16];
 	sf::Sprite currentSprite;

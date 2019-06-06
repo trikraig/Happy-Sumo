@@ -7,7 +7,7 @@ protected:
 
 	sf::Vector2f currentPosition;
 	sf::Color color;
-
+	int movementSpeed{ 5 };
 	//All objects are going to be squares so one int size required.
 	float size;
 	
