@@ -8,6 +8,10 @@ private:
 	float score;
 	bool isBad;
 	bool isAlive{ true };
+	int spriteSelection;
+
+	sf::Texture texture;
+	sf::Sprite currentSprite;
 
 	
 	sf::RectangleShape shape;
@@ -20,7 +24,7 @@ public:
 	void Render(sf::RenderWindow & window) override;
 	float getScore();
 	void generateNewPosition();
-	sf::RectangleShape getShape();
+	sf::Sprite getSprite();
 	
 };
 

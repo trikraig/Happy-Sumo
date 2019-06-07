@@ -5,12 +5,32 @@
 Food::Food(sf::Vector2f new_position, sf::Color new_color, float new_Size, float new_score, bool is_bad) : GameObject (new_position, new_color, new_Size)
 {
 	isBad = is_bad;
+
 	if (!isBad)
 	{
+
+		spriteSelection = rand() % 4;
+
+		std::string fileName = "Sprites/Food/food" + std::to_string(spriteSelection) + ".png";
+
+		if (!texture.loadFromFile(fileName))
+		{
+			//Error
+		}
+
 		score = new_score;
 	}
 	else
 	{
+		spriteSelection = rand() % 2;
+
+		std::string fileName = "Sprites/Food/food" + std::to_string(spriteSelection) + ".png";
+
+		if (!texture.loadFromFile(fileName))
+		{
+			//Error
+		}
+
 		score = - new_score;
 	}
 	
@@ -72,11 +92,16 @@ void Food::Update()
 
 void Food::Render(sf::RenderWindow & window)
 {
-	shape.setSize(sf::Vector2f((float)size, (float)size));
+	currentSprite.setTexture(texture);
+	//currentSprite.setScale(size, size);
+	currentSprite.setPosition(currentPosition);
+	window.draw(currentSprite);
+
+	/*shape.setSize(sf::Vector2f((float)size, (float)size));
 	shape.setFillColor(color);
 	shape.setPosition(currentPosition);
 	shape.setOrigin(sf::Vector2f((float)(size / 2), (float)(size / 2)));
-	window.draw(shape);
+	window.draw(shape);*/
 }
 
 float Food::getScore()
@@ -119,7 +144,7 @@ void Food::generateNewPosition()
 	}
 }
 
-sf::RectangleShape Food::getShape()
+sf::Sprite Food::getSprite()
 {
-	return shape;
+	return currentSprite;
 }
