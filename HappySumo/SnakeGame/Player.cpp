@@ -29,7 +29,7 @@ void Player::Update()
 {
 	//Player Control
 
-	
+	score = static_cast <int> (size);
 
 	//Idle - 000 South Face, 004 North Face, 008 East Face, 0012 West Face)
 
@@ -178,11 +178,16 @@ void Player::eatFood( std::vector <Food> &allFood)
 		if (currentSprite.getGlobalBounds().intersects(food.getSprite().getGlobalBounds()))
 		{
 			//Change Player Size
-			size += 0.1;
+			size += 0.1f;
 			//Respawn Food
 			food.generateNewPosition();
 		}
 	}
+}
+
+int Player::getScore()
+{
+	return score;
 }
 
 

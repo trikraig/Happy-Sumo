@@ -2,8 +2,10 @@
 
 
 
-Food::Food(sf::Vector2f new_position, sf::Color new_color, float new_Size, float new_score, bool is_bad) : GameObject (new_position, new_color, new_Size)
+Food::Food(sf::Vector2f new_position, sf::Color new_color, float new_Size, float new_score, bool is_bad, const int &screen_Width, const int &screen_Height) : GameObject (new_position, new_color, new_Size)
 {
+	screenWidth = screen_Width;
+	screenHeight = screen_Height;
 	isBad = is_bad;
 
 	if (!isBad)
@@ -118,23 +120,23 @@ void Food::generateNewPosition()
 	switch (selection)
 	{
 	case 1: 
-		currentPosition.x = 400;
-		currentPosition.y = -10;
+		currentPosition.x = static_cast <float> (rand() % screenWidth);
+		currentPosition.y = - offset;
 		currentDirection = EDirection::eSouth;
 		break;
 	case 2:
-		currentPosition.x = 810;
-		currentPosition.y = 300;
+		currentPosition.x = static_cast <float> (screenWidth + offset);
+		currentPosition.y = static_cast <float> (rand() % screenHeight);
 		currentDirection = EDirection::eWest;
 		break;
 	case 3:
-		currentPosition.x = 400;
-		currentPosition.y = 610;
+		currentPosition.x = static_cast <float> (rand() % screenWidth);
+		currentPosition.y = static_cast <float> (screenHeight + offset);
 		currentDirection = EDirection::eNorth;
 		break;
 	case 4:
-		currentPosition.x = -10;
-		currentPosition.y = 300;
+		currentPosition.x = -offset;
+		currentPosition.y = static_cast <float> (rand() % screenHeight);
 		currentDirection = EDirection::eEast;
 		break;
 	
