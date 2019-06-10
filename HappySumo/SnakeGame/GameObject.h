@@ -7,19 +7,21 @@ protected:
 
 	sf::Vector2f currentPosition;
 	sf::Color color;
-
+	int movementSpeed{ 5 };
 	//All objects are going to be squares so one int size required.
-	int size;
+	float size;
 	
 	enum class EDirection
 	{
-		eNorth, eEast, eSouth, eWest
+		eNorth, eEast, eSouth, eWest, eIdle
 	};
 
-	EDirection currentDirection;
+	EDirection currentDirection{ EDirection::eIdle };
+	EDirection prevDirection;
+
 public:
 
-	GameObject(sf::Vector2f new_position, sf::Color new_color, int new_Size);
+	GameObject(sf::Vector2f new_position, sf::Color new_color, float new_Size);
 
 	//Controls movement
 	virtual void Update();
