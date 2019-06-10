@@ -10,11 +10,11 @@ Player::Player(sf::Vector2f new_position, sf::Color new_color, float new_Size) :
 	{
 		if (i < 10)
 		{
-			fileName = "Sprites/tile00" + std::to_string(i) + ".png";
+			fileName = "Sprites/Player/tile00" + std::to_string(i) + ".png";
 		}
 		else if (i > 9 && i < 20)
 		{
-			fileName = "Sprites/tile0" + std::to_string(i) + ".png";
+			fileName = "Sprites/Player/tile0" + std::to_string(i) + ".png";
 		}
 		
 		if (!textures[i].loadFromFile(fileName))
@@ -29,7 +29,7 @@ void Player::Update()
 {
 	//Player Control
 
-	
+	score = static_cast <int> (size);
 
 	//Idle - 000 South Face, 004 North Face, 008 East Face, 0012 West Face)
 
@@ -175,14 +175,19 @@ void Player::eatFood( std::vector <Food> &allFood)
 	for ( Food &food : allFood)
 	{
 		
-		if (currentSprite.getGlobalBounds().intersects(food.getShape().getGlobalBounds()))
+		if (currentSprite.getGlobalBounds().intersects(food.getSprite().getGlobalBounds()))
 		{
 			//Change Player Size
-			size += 0.1;
+			size += 0.1f;
 			//Respawn Food
 			food.generateNewPosition();
 		}
 	}
+}
+
+int Player::getScore()
+{
+	return score;
 }
 
 

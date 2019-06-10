@@ -9,13 +9,14 @@ class Game
 {
 private:
 
-	const int screenWidth{ 800 };
-	const int screenHeight{ 600 };
+	sf::Font font;
+	
 	const int gameDelay{ 50 };
 
 	std::vector <GameObject> allGameObjects;
-
+		
 	std::vector  <Food> allFood;
+	
 
 	enum class EGameState
 	{
@@ -27,5 +28,6 @@ private:
 public:
 
 	void PlayGame(sf::RenderWindow & window);
+	void DisplayUI(sf::RenderWindow & window, Player *player);
 };
 
