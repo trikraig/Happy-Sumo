@@ -11,7 +11,7 @@ private:
 
 	sf::Font font;
 	
-	const int gameDelay{ 50 };
+	const int gameDelayInMilliseconds{ 50 };
 
 	std::vector <GameObject> allGameObjects;
 		

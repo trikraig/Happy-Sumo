@@ -8,16 +8,15 @@ private:
 	float score;
 	bool isBad;
 	bool isAlive{ true };
-	int spriteSelection;
+	int currentSelectedSprite;
 	int screenWidth;
 	int screenHeight;
-	float offset{ 10 };
+	float movementDistance{ 10 };
 
-	sf::Texture texture;
+	sf::Texture currentTexture;
 	sf::Sprite currentSprite;
 
-	
-	sf::RectangleShape shape;
+
 
 public:
 

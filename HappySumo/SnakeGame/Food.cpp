@@ -11,11 +11,11 @@ Food::Food(sf::Vector2f new_position, sf::Color new_color, float new_Size, float
 	if (!isBad)
 	{
 
-		spriteSelection = rand() % 4;
+		currentSelectedSprite = rand() % 4;
 
-		std::string fileName = "Sprites/Food/food" + std::to_string(spriteSelection) + ".png";
+		std::string fileName = "Sprites/Food/food" + std::to_string(currentSelectedSprite) + ".png";
 
-		if (!texture.loadFromFile(fileName))
+		if (!currentTexture.loadFromFile(fileName))
 		{
 			//Error
 		}
@@ -24,11 +24,11 @@ Food::Food(sf::Vector2f new_position, sf::Color new_color, float new_Size, float
 	}
 	else
 	{
-		spriteSelection = rand() % 2;
+		currentSelectedSprite = rand() % 2;
 
-		std::string fileName = "Sprites/Food/food" + std::to_string(spriteSelection) + ".png";
+		std::string fileName = "Sprites/Food/food" + std::to_string(currentSelectedSprite) + ".png";
 
-		if (!texture.loadFromFile(fileName))
+		if (!currentTexture.loadFromFile(fileName))
 		{
 			//Error
 		}
@@ -94,7 +94,7 @@ void Food::Update()
 
 void Food::Render(sf::RenderWindow & window)
 {
-	currentSprite.setTexture(texture);
+	currentSprite.setTexture(currentTexture);
 	//currentSprite.setScale(size, size);
 	currentSprite.setPosition(currentPosition);
 	window.draw(currentSprite);
@@ -121,21 +121,21 @@ void Food::generateNewPosition()
 	{
 	case 1: 
 		currentPosition.x = static_cast <float> (rand() % screenWidth);
-		currentPosition.y = - offset;
+		currentPosition.y = - movementDistance;
 		currentDirection = EDirection::eSouth;
 		break;
 	case 2:
-		currentPosition.x = static_cast <float> (screenWidth + offset);
+		currentPosition.x = static_cast <float> (screenWidth + movementDistance);
 		currentPosition.y = static_cast <float> (rand() % screenHeight);
 		currentDirection = EDirection::eWest;
 		break;
 	case 3:
 		currentPosition.x = static_cast <float> (rand() % screenWidth);
-		currentPosition.y = static_cast <float> (screenHeight + offset);
+		currentPosition.y = static_cast <float> (screenHeight + movementDistance);
 		currentDirection = EDirection::eNorth;
 		break;
 	case 4:
-		currentPosition.x = -offset;
+		currentPosition.x = -movementDistance;
 		currentPosition.y = static_cast <float> (rand() % screenHeight);
 		currentDirection = EDirection::eEast;
 		break;

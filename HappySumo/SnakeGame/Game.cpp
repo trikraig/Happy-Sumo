@@ -44,7 +44,7 @@ void Game::PlayGame(sf::RenderWindow & window)
 
 			//Game clock to add delay to refresh rate of window. 
 			static sf::Clock gameClock;
-			while (gameClock.getElapsedTime().asMilliseconds() < gameDelay);
+			while (gameClock.getElapsedTime().asMilliseconds() < gameDelayInMilliseconds);
 			gameClock.restart();
 		}
 			break;
