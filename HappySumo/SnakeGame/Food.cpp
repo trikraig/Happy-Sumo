@@ -24,7 +24,7 @@ Food::Food(sf::Vector2f new_position, sf::Color new_color, float new_Size, float
 	}
 	else
 	{
-		currentSelectedSprite = rand() % 2;
+		currentSelectedSprite = rand() % 1 + 4;
 
 		std::string fileName = "Sprites/Food/food" + std::to_string(currentSelectedSprite) + ".png";
 
@@ -149,4 +149,9 @@ void Food::generateNewPosition()
 sf::Sprite Food::getSprite()
 {
 	return currentSprite;
+}
+
+bool Food::getIsBad()
+{
+	return isBad;
 }

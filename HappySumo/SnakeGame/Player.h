@@ -10,7 +10,8 @@ private:
 	int movementStep{ 0 };
 	sf::Texture textures [16];
 	sf::Sprite currentSprite;
-	int score;
+	int score = 0;
+	
 
 public:
 

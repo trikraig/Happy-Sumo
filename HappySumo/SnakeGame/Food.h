@@ -27,6 +27,7 @@ public:
 	float getScore();
 	void generateNewPosition();
 	sf::Sprite getSprite();
+	bool getIsBad();
 	
 };
 

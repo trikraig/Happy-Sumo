@@ -29,7 +29,8 @@ void Player::Update()
 {
 	//Player Control
 
-	score = static_cast <int> (size);
+	//Rethink score mechanic, tied to size or independant?
+	//score = static_cast <int> (size);
 
 	//Idle - 000 South Face, 004 North Face, 008 East Face, 0012 West Face)
 
@@ -116,12 +117,12 @@ void Player::Update()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		size += 0.5;
+		//size += 0.5;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
-		size -= 0.5;
+		//size -= 0.5;
 	}
 
 
@@ -177,8 +178,27 @@ void Player::eatFood( std::vector <Food> &allFood)
 		
 		if (currentSprite.getGlobalBounds().intersects(food.getSprite().getGlobalBounds()))
 		{
-			//Change Player Size
-			size += 0.1f;
+			if (food.getIsBad() == false)
+			{
+				//Change Player Size
+				size += 0.1f;
+				
+			}
+			else
+			{
+				//Reduce player size if bad food.
+				size -= 0.1f;
+			}
+
+			
+			
+			score += static_cast <int> (food.getScore());
+			
+			if (score < 0) {
+				score = 0;
+			}
+
+			
 			//Respawn Food
 			food.generateNewPosition();
 		}

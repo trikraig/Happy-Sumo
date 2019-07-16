@@ -15,6 +15,12 @@ void Game::PlayGame(sf::RenderWindow & window)
 		allFood.push_back(newFood);
 	}
 
+	for (int i = 0; i < 3; i++)
+	{
+		Food newFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 10, 10, true, screenWidth, screenHeight);
+		allFood.push_back(newFood);
+	}
+
 	while (window.isOpen())
 	{
 		switch (state)
