@@ -11,13 +11,13 @@ void Game::PlayGame(sf::RenderWindow & window)
 
 	for (int i = 0; i < 3; i++)
 	{
-		Food newFood(sf::Vector2f(0, 0), sf::Color(255,0,0,255), 10, 10, false, screenWidth, screenHeight);
+		Food newFood(sf::Vector2f(0, 0), sf::Color(255,0,0,255), foodSize, 10, false, screenWidth, screenHeight);
 		allFood.push_back(newFood);
 	}
 
 	for (int i = 0; i < 3; i++)
 	{
-		Food newFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 10, 10, true, screenWidth, screenHeight);
+		Food newFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 2, 10, true, screenWidth, screenHeight);
 		allFood.push_back(newFood);
 	}
 

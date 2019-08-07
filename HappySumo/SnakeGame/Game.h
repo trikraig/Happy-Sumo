@@ -12,6 +12,8 @@ private:
 	sf::Font font;
 	
 	const int gameDelayInMilliseconds{ 50 };
+	
+	float foodSize{ 2 };
 
 	std::vector <GameObject> allGameObjects;
 		

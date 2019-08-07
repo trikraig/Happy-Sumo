@@ -95,7 +95,7 @@ void Food::Update()
 void Food::Render(sf::RenderWindow & window)
 {
 	currentSprite.setTexture(currentTexture);
-	//currentSprite.setScale(size, size);
+	currentSprite.setScale(size, size);
 	currentSprite.setPosition(currentPosition);
 	window.draw(currentSprite);
 
