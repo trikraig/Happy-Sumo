@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Food.h"
+#include "Enemy.h"
 
 class Game
 {
@@ -18,6 +19,9 @@ private:
 	std::vector <GameObject> allGameObjects;
 		
 	std::vector  <Food> allFood;
+
+	std::vector <Enemy> allEnemies;
+
 	
 
 	enum class EGameState

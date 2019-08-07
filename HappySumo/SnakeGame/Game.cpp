@@ -11,15 +11,20 @@ void Game::PlayGame(sf::RenderWindow & window)
 
 	for (int i = 0; i < 3; i++)
 	{
+		//Good Food
 		Food newFood(sf::Vector2f(0, 0), sf::Color(255,0,0,255), foodSize, 10, false, screenWidth, screenHeight);
 		allFood.push_back(newFood);
+		//Bad Food
+		Food newBadFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 2, 10, true, screenWidth, screenHeight);
+		allFood.push_back(newBadFood);
+		//Enemies
+		Enemy newEnemy(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 2, screenWidth, screenHeight);
+		allEnemies.push_back(newEnemy);
 	}
 
-	for (int i = 0; i < 3; i++)
-	{
-		Food newFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 2, 10, true, screenWidth, screenHeight);
-		allFood.push_back(newFood);
-	}
+
+
+	
 
 	while (window.isOpen())
 	{
@@ -37,6 +42,12 @@ void Game::PlayGame(sf::RenderWindow & window)
 			{
 				food.Update();
 				food.Render(window);
+			}
+
+			for (Enemy &enemy : allEnemies)
+			{
+				enemy.Update();
+				enemy.Render(window);
 			}
 			
 			player->Render(window);
