@@ -1,6 +1,5 @@
 /*
-  Games Development with C++ GAV1031-N
-  Snake ICA start project
+  Happy Sumo - Created by Craig Palmer
 
   Set up to use the SFML 2.5.1 64-bit API
 	SFML documentation: https://www.sfml-dev.org/learn.php
