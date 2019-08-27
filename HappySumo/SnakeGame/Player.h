@@ -12,6 +12,9 @@ private:
 	sf::Sprite currentSprite;
 	int score = 0;
 	
+	//Attempt to increase time if food has been eaten.
+	bool hasEaten{ false };
+	
 
 public:
 
@@ -21,6 +24,11 @@ public:
 	void Render(sf::RenderWindow & window) override;
 	void eatFood( std::vector <Food> &allFood);
 	int getScore();
+
+	//Attempt to increase time if food has been eaten.
+	bool gethasEaten();
+	void resetHasEaten();
+	
 	
 };
 

@@ -178,6 +178,8 @@ void Player::eatFood( std::vector <Food> &allFood)
 		
 		if (currentSprite.getGlobalBounds().intersects(food.getSprite().getGlobalBounds()))
 		{
+			hasEaten = true;
+
 			if (food.getIsBad() == false)
 			{
 				//Change Player Size
@@ -208,6 +210,16 @@ void Player::eatFood( std::vector <Food> &allFood)
 int Player::getScore()
 {
 	return score;
+}
+
+bool Player::gethasEaten()
+{
+	return hasEaten;
+}
+
+void Player::resetHasEaten()
+{
+	hasEaten = false;
 }
 
 
