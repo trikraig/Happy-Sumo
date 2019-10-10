@@ -11,6 +11,7 @@ protected:
 	//All objects are going to be squares so one int size required.
 	float size;
 	
+	
 	enum class EDirection
 	{
 		eNorth, eEast, eSouth, eWest, eIdle
@@ -27,6 +28,7 @@ public:
 	virtual void Update();
 	//To review later.
 	virtual void Render(sf::RenderWindow & window) ;
-	
+	void setMovementSpeed(int newSpeed);
+	sf::Vector2f getCurrentPosition();
 };
 

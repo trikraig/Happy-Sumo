@@ -12,6 +12,18 @@ void GameObject::Render(sf::RenderWindow & window)
 {
 }
 
+void GameObject::setMovementSpeed(int newSpeed)
+{
+	movementSpeed = newSpeed;
+}
+
+sf::Vector2f GameObject::getCurrentPosition()
+{
+	return currentPosition;
+}
+
+
+
 //void GameObject::Render(sf::RenderWindow & window)
 //{
 //}

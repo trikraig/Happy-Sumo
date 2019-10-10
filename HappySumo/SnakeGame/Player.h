@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "Food.h"
+#include "Enemy.h"
 
 class Player : public GameObject
 {
@@ -23,9 +24,10 @@ public:
 	void Update() override;
 	void Render(sf::RenderWindow & window) override;
 	void eatFood( std::vector <Food> &allFood);
-	int getScore();
+	void collideEnemies(std::vector <Enemy> &allEnemies);
+	
 
-	//Attempt to increase time if food has been eaten.
+	int getScore();
 	bool gethasEaten();
 	void resetHasEaten();
 	

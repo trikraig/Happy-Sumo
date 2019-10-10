@@ -154,3 +154,8 @@ void Enemy::generateNewPosition()
 	}
 
 }
+
+sf::Sprite Enemy::getSprite()
+{
+	return currentSprite;
+}

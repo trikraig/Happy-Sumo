@@ -20,6 +20,7 @@ public:
 	void Render(sf::RenderWindow & window) override;
 	void generateNewPosition();
 
+	sf::Sprite getSprite();
 
 
 

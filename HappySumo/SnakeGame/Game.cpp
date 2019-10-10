@@ -13,20 +13,16 @@ void Game::PlayGame(sf::RenderWindow & window)
 
 	gameTimeClock.restart();
 
+
+	generateNewFood(screenWidth, screenHeight);
+
+	
 	for (int i = 0; i < 3; i++)
 	{
-		//Good Food
-		Food newFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), foodSize, 10, false, screenWidth, screenHeight);
-		allFood.push_back(newFood);
-		//Bad Food
-		Food newBadFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 2, 10, true, screenWidth, screenHeight);
-		allFood.push_back(newBadFood);
 		//Enemies
 		Enemy newEnemy(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 2, screenWidth, screenHeight);
 		allEnemies.push_back(newEnemy);
 	}
-
-
 
 
 
@@ -82,13 +78,16 @@ void Game::PlayGame(sf::RenderWindow & window)
 		break;
 		case EGameState::eGameOver:
 		{
+			//TO DO
+			//Record and display high score?
+
 			window.clear();
 			sf::Text textScore;
 			textScore.setString("Final Score: " + std::to_string(player->getScore()));
 			textScore.setFont(font);
 			textScore.setCharacterSize(30);
 			textScore.setFillColor(sf::Color(255, 0, 0, 255));
-			textScore.setPosition(250, 300);
+			textScore.setPosition(300, 300);
 			window.draw(textScore);
 
 			textScore.setString("Game Over!");
@@ -96,6 +95,13 @@ void Game::PlayGame(sf::RenderWindow & window)
 			textScore.setCharacterSize(50);
 			textScore.setFillColor(sf::Color(255, 0, 0, 255));
 			textScore.setPosition(250, 150);
+			window.draw(textScore);
+
+			textScore.setString("Press Spacebar to Play Again!");
+			textScore.setFont(font);
+			textScore.setCharacterSize(30);
+			textScore.setFillColor(sf::Color(255, 0, 0, 255));
+			textScore.setPosition(175, 450);
 			window.draw(textScore);
 
 			sf::Event event;
@@ -107,14 +113,14 @@ void Game::PlayGame(sf::RenderWindow & window)
 
 					switch (event.key.code)
 					{
-						//case sf::Keyboard::Num1:
-						//{
-						//	//Single Player, No Opponents.
-						//	Game *game = new Game;
-						//	game->PlayGame(window);
-						//	delete game;
-						//	break;
-						//}
+					case sf::Keyboard::Space:
+						{
+							//Single Player, No Opponents.
+							Game *game = new Game;
+							game->PlayGame(window);
+							delete game;
+							break;
+						}
 
 					case sf::Keyboard::Q:
 					{
@@ -146,6 +152,29 @@ void Game::PlayGame(sf::RenderWindow & window)
 	return;
 
 
+}
+
+void Game::generateNewFood(const int &screenWidth, const int &screenHeight)
+{
+	allFood.clear();
+
+	for (int i = 0; i < totalEachGoodFoodCreate; i++)
+	{
+		//Good Food
+		Food newFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), foodSize, 10, false, screenWidth, screenHeight);
+		allFood.push_back(newFood);
+
+
+	}
+
+	for (int i = 0; i < totalEachGoodFoodCreate; i++)
+	{
+		//Bad Food
+		Food newBadFood(sf::Vector2f(0, 0), sf::Color(255, 0, 0, 255), 2, 10, true, screenWidth, screenHeight);
+		allFood.push_back(newBadFood);
+
+
+	}
 }
 
 void Game::DisplayUI(sf::RenderWindow & window, Player * player)

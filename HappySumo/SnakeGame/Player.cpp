@@ -1,8 +1,7 @@
 #include "Player.h"
 
-Player::Player(sf::Vector2f new_position, sf::Color new_color, float new_Size) : GameObject (new_position, new_color, new_Size)
+Player::Player(sf::Vector2f new_position, sf::Color new_color, float new_Size) : GameObject(new_position, new_color, new_Size)
 {
-
 	std::string fileName;
 
 	//If use to load more player sprites, increase tile00 to max array size
@@ -16,21 +15,18 @@ Player::Player(sf::Vector2f new_position, sf::Color new_color, float new_Size) :
 		{
 			fileName = "Sprites/Player/tile0" + std::to_string(i) + ".png";
 		}
-		
+
 		if (!textures[i].loadFromFile(fileName))
 		{
 			//Error
 		}
 	};
-	
+
 }
 
 void Player::Update()
 {
 	//Player Control
-
-	//Rethink score mechanic, tied to size or independant?
-	//score = static_cast <int> (size);
 
 	//Idle - 000 South Face, 004 North Face, 008 East Face, 0012 West Face)
 
@@ -53,32 +49,6 @@ void Player::Update()
 	{
 		movementStep = 12;
 	}
-
-	/*switch (prevDirection)
-	{
-	case GameObject::EDirection::eNorth:
-		movementStep = 4;
-		break;
-	case GameObject::EDirection::eEast:
-		movementStep = 8;
-		break;
-	case GameObject::EDirection::eSouth:
-		movementStep = 0;
-		break;
-	case GameObject::EDirection::eWest:
-		movementStep = 12;
-		break;
-	case GameObject::EDirection::eIdle:
-		break;
-	default:
-		break;
-	}*/
-	
-	
-	/*if (movementStep >= 3)
-	{
-		movementStep = 0;
-	}*/
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -114,17 +84,6 @@ void Player::Update()
 		}
 
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
-	{
-		//size += 0.5;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-	{
-		//size -= 0.5;
-	}
-
 
 	switch (currentDirection)
 	{
@@ -171,38 +130,49 @@ void Player::Render(sf::RenderWindow & window)
 	window.draw(shape);*/
 }
 
-void Player::eatFood( std::vector <Food> &allFood)
+void Player::eatFood(std::vector <Food> &allFood)
 {
-	for ( Food &food : allFood)
+	for (Food &food : allFood)
 	{
-		
+
 		if (currentSprite.getGlobalBounds().intersects(food.getSprite().getGlobalBounds()))
 		{
-			hasEaten = true;
-
 			if (food.getIsBad() == false)
 			{
 				//Change Player Size
+				hasEaten = true;
 				size += 0.1f;
-				
 			}
 			else
 			{
 				//Reduce player size if bad food.
 				size -= 0.1f;
+				score = 0;
+				hasEaten = false;
 			}
 
-			
-			
 			score += static_cast <int> (food.getScore());
-			
+
 			if (score < 0) {
 				score = 0;
 			}
-
-			
 			//Respawn Food
 			food.generateNewPosition();
+		}
+	}
+}
+
+void Player::collideEnemies(std::vector<Enemy>& allEnemies)
+{
+	for (Enemy &enemy : allEnemies)
+	{
+		if (currentSprite.getGlobalBounds().intersects(enemy.getSprite().getGlobalBounds()))
+		{
+			//MAKE BOUNCE OFF ENEMY???
+			setMovementSpeed(0);
+			enemy.setMovementSpeed(0);
+			//??????????????????????????????
+			
 		}
 	}
 }

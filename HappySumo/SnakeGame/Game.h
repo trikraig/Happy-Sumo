@@ -31,6 +31,10 @@ private:
 	int timeLimitAsSeconds = maxTimeLimit;
 	int timeRemaining;
 
+	int totalEachGoodFoodCreate{ 3 };
+	int totalEachBadFoodCreate{ 3 };
+	int totalEnemy{ 3 };
+
 
 	enum class EGameState
 	{
@@ -42,6 +46,7 @@ private:
 public:
 
 	void PlayGame(sf::RenderWindow & window);
+	void generateNewFood(const int &screenWidth, const int &screenHeight);
 	void DisplayUI(sf::RenderWindow & window, Player *player);
 	void increaseTime(bool hasEaten, Player &player);
 };
